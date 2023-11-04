@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Heading } from "../components/Heading";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 
 const StepOne = () => {
+  const [phoneValue, setPhoneValue] = useState("");
+  const [phoneError, setPhoneError] = useState(false);
+
+  const clickHandler = () => {
+    if (!phoneValue) {
+      setPhoneError(true);
+    } else {
+      setPhoneError(false);
+    }
+  };
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -26,6 +37,9 @@ const StepOne = () => {
             <Heading text="1. Занимательный вопрос" headingType="h2" />
             <label className="input-wrapper">
               <Input
+                hasError={phoneError}
+                value={phoneValue}
+                onChange={setPhoneValue}
                 isRequired
                 type="text"
                 id="answer"
@@ -37,7 +51,12 @@ const StepOne = () => {
               {/* Введите номер в правильном формате например */}
               {/* </span> */}
             </label>
-            <Button isDisabled id="next-btn" buttonText="Далее" />
+            <Button
+              isDisabled
+              id="next-btn"
+              buttonText="Далее"
+              onClick={clickHandler}
+            />
           </div>
         </div>
       </div>
