@@ -23,21 +23,6 @@ const Welcome = () => {
       setPhoneError(false);
     }
   };
-  // }, [{ nameValue, phoneValue }]
-
-  // useEffect(() => {
-  // if (!nameValue) {
-  // setNameError(true);
-  // } else {
-  // setNameError(false);
-  // }
-  // if (!phoneValue) {
-  // setPhoneError(true);
-  // } else {
-  // setPhoneError(false);
-  // }
-  // }, [{ nameValue, phoneValue }]);
-
   return (
     <div className="container">
       <div className="wrapper">

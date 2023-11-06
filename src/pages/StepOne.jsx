@@ -46,17 +46,8 @@ const StepOne = () => {
                 inputPlaceholder="Ваш ответ"
                 errorMessage="Введите номер в правильном формате например"
               />
-              {/* <span  */}
-              {/* // id="error-message"> */}
-              {/* Введите номер в правильном формате например */}
-              {/* </span> */}
             </label>
-            <Button
-              isDisabled
-              id="next-btn"
-              buttonText="Далее"
-              onClick={clickHandler}
-            />
+            <Button id="next-btn" buttonText="Далее" onClick={clickHandler} />
           </div>
         </div>
       </div>

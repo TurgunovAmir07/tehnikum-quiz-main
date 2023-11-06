@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { ProgressBar } from "../components/ProgressBar";
 import { AnswerItem } from "../components/AnswerItem";
 
 const StepTwo = () => {
+  const [checkedAnswer, setCheckedAnswer] = useState(null);
+
   const variants = [
     {
       id: "variant-1",
@@ -21,6 +23,11 @@ const StepTwo = () => {
       AnswerLabel: "Ответ №4",
     },
   ];
+
+  // useEffect(() => {
+  // console.log("Ваш ответ:", checkedAnswer);
+  // }, [checkedAnswer]);
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -34,24 +41,10 @@ const StepTwo = () => {
                   key={elem.id}
                   id={elem.id}
                   AnswerLabel={elem.AnswerLabel}
+                  onChange={() => setCheckedAnswer(elem.id)}
+                  isChecked={elem.id === checkedAnswer}
                 />
               ))}
-              {/* <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-1" />
-                <label htmlFor="variant-1">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-2" />
-                <label htmlFor="variant-2">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-3" />
-                <label htmlFor="variant-3">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-4" />
-                <label htmlFor="variant-4">Ваш ответ</label>
-              </li> */}
             </ul>
             <button disabled id="next-btn">
               Далее

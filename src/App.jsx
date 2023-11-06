@@ -1,15 +1,15 @@
 import React from "react";
 // import Welcome from "./pages/Welcome";
-// import StepOne from "./pages/StepOne";
+import StepOne from "./pages/StepOne";
 import "./styles/main.css";
-import StepTwo from "./pages/StepTwo";
+// import StepTwo from "./pages/StepTwo";
 
 const App = () => {
   return (
     <div className="App">
-      <StepTwo />
+      {/* <StepTwo /> */}
       {/* <Welcome /> */}
-      {/* <StepOne /> */}
+      <StepOne />
     </div>
   );
 };
