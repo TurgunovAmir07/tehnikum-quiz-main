@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ProgressBar } from "../components/ProgressBar";
 import { AnswerItem } from "../components/AnswerItem";
+import { Heading } from "../components/Heading";
 
 const StepTwo = () => {
   const [checkedAnswer, setCheckedAnswer] = useState(null);
@@ -34,7 +35,8 @@ const StepTwo = () => {
         <div className="variants-quiz">
           <ProgressBar />
           <div className="question">
-            <h2>1. Занимательный вопрос</h2>
+            {/* <h2>1. Занимательный вопрос</h2> */}
+            <Heading text="1. Занимательный вопрос" headingType="h2" />
             <ul className="variants">
               {variants.map((elem) => (
                 <AnswerItem
