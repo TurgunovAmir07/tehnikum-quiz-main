@@ -1,28 +1,56 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Heading } from "../components/Heading";
-import { Button } from "../components/Button";
+// import { Button } from "../components/Button";
+import { LinkButton } from "../components/LinkButton";
 import { Input } from "../components/Input";
 
 const Welcome = () => {
+  const navigate = useNavigate();
+
   const [nameValue, setNameValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
 
   const [nameError, setNameError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
 
-  const clickHandler = () => {
+  const goToNextPage = () => {
+    if (nameError && phoneError) {
+      navigate("/step-one");
+    }
+  };
+
+  const validateName = () => {
     if (!nameValue) {
       setNameError(true);
     } else {
       setNameError(false);
     }
-
+  };
+  const validatePhone = () => {
     if (!phoneValue) {
       setPhoneError(true);
     } else {
       setPhoneError(false);
     }
   };
+
+  const handleNameInput = (value) => {
+    setNameValue(value);
+    validateName();
+  };
+  const handlePhoneInput = (value) => {
+    setPhoneValue(value);
+    validatePhone();
+  };
+
+  const clickHandler = () => {
+    validateName();
+    validatePhone();
+
+    goToNextPage();
+  };
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -35,7 +63,7 @@ const Welcome = () => {
             <Input
               hasError={nameError}
               value={nameValue}
-              onChange={setNameValue}
+              onChange={(value) => handleNameInput(value)}
               id="username"
               isRequired
               inputLabel="Ваше имя"
@@ -47,7 +75,7 @@ const Welcome = () => {
               <Input
                 hasError={phoneError}
                 value={phoneValue}
-                onChange={setPhoneValue}
+                onChange={(value) => handlePhoneInput(value)}
                 id="phone"
                 isRequired
                 inputLabel="Ваш номер"
@@ -56,7 +84,7 @@ const Welcome = () => {
               />
               {/* <span id="error-message">Введите номер в правильном формате</span> */}
             </label>
-            <Button
+            <LinkButton
               buttonType="button"
               buttonText="Далее"
               onClick={clickHandler}

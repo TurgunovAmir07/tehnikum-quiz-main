@@ -3,9 +3,21 @@ import { ProgressBar } from "../components/ProgressBar";
 import { Heading } from "../components/Heading";
 import { AnswerItemImg } from "../components/AnswerItemImg";
 import { useState } from "react";
+import { LinkButton } from "../components/LinkButton";
 
 const StepThree = () => {
   const [checkedAnswer, setCheckedAnswer] = useState(null);
+
+  const [phoneValue, setPhoneValue] = useState("");
+  const [phoneError, setPhoneError] = useState(false);
+
+  const clickHandler = () => {
+    if (!phoneValue) {
+      setPhoneError(true);
+    } else {
+      setPhoneError(false);
+    }
+  };
 
   const variants = [
     {
@@ -52,7 +64,7 @@ const StepThree = () => {
           {/* <div className="indicator__unit indicator__unit-4"></div> */}
           {/* </div> */}
           {/* </div> */}
-          <ProgressBar />
+          <ProgressBar currentStep={3} />
           <div className="question">
             {/* <h2>3. Занимательный вопрос</h2> */}
             <Heading text="3. Занимательный вопрос" headingType="h2" />
@@ -97,9 +109,17 @@ const StepThree = () => {
                 </label>
               </li> */}
             </ul>
-            <button disabled id="next-btn">
+            <LinkButton
+              id="next-btn"
+              buttonText="Далее"
+              onClick={clickHandler}
+              path="/step-four"
+              type="button"
+              isDisabled={!checkedAnswer}
+            />
+            {/* <button disabled id="next-btn">
               Далее
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

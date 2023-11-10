@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Heading } from "../components/Heading";
 import { Input } from "../components/Input";
-import { Button } from "../components/Button";
+// import { Button } from "../components/Button";
 import { ProgressBar } from "../components/ProgressBar";
+import { LinkButton } from "../components/LinkButton";
 
 const StepOne = () => {
   const [phoneValue, setPhoneValue] = useState("");
@@ -34,7 +35,7 @@ const StepOne = () => {
           {/* <div className="indicator__unit indicator__unit-4"></div> */}
           {/* </div> */}
           {/* </div> */}
-          <ProgressBar />
+          <ProgressBar currentStep={1} />
           <div className="question">
             <Heading text="1. Занимательный вопрос" headingType="h2" />
             <label className="input-wrapper">
@@ -46,10 +47,17 @@ const StepOne = () => {
                 type="text"
                 id="answer"
                 inputPlaceholder="Ваш ответ"
-                errorMessage="Введите номер в правильном формате например"
+                errorMessage="Введите номер в правильном формате"
               />
             </label>
-            <Button id="next-btn" buttonText="Далее" onClick={clickHandler} />
+            <LinkButton
+              id="next-btn"
+              buttonText="Далее"
+              onClick={clickHandler}
+              path="/step-two"
+              type="button"
+            />
+            {/* <Button id="next-btn" buttonText="Далее" onClick={clickHandler} /> */}
           </div>
         </div>
       </div>

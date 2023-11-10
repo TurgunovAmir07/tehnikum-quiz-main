@@ -2,9 +2,21 @@ import React, { useState } from "react";
 import { ProgressBar } from "../components/ProgressBar";
 import { AnswerItem } from "../components/AnswerItem";
 import { Heading } from "../components/Heading";
+import { LinkButton } from "../components/LinkButton";
 
 const StepTwo = () => {
   const [checkedAnswer, setCheckedAnswer] = useState(null);
+
+  const [phoneValue, setPhoneValue] = useState("");
+  const [phoneError, setPhoneError] = useState(false);
+
+  const clickHandler = () => {
+    if (!phoneValue) {
+      setPhoneError(true);
+    } else {
+      setPhoneError(false);
+    }
+  };
 
   const variants = [
     {
@@ -33,7 +45,7 @@ const StepTwo = () => {
     <div className="container">
       <div className="wrapper">
         <div className="variants-quiz">
-          <ProgressBar />
+          <ProgressBar currentStep={2} />
           <div className="question">
             {/* <h2>1. Занимательный вопрос</h2> */}
             <Heading text="1. Занимательный вопрос" headingType="h2" />
@@ -48,9 +60,17 @@ const StepTwo = () => {
                 />
               ))}
             </ul>
-            <button disabled id="next-btn">
+            <LinkButton
+              id="next-btn"
+              buttonText="Далее"
+              onClick={clickHandler}
+              path="/step-three"
+              type="button"
+              isDisabled={!checkedAnswer}
+            />
+            {/* <button disabled id="next-btn">
               Далее
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

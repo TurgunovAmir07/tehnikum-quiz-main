@@ -3,9 +3,21 @@ import { Heading } from "../components/Heading";
 import { ProgressBar } from "../components/ProgressBar";
 import { useState } from "react";
 import { AnswerItem } from "../components/AnswerItem";
+import { LinkButton } from "../components/LinkButton";
 
 const StepFour = () => {
   const [checkedAnswer, setCheckedAnswer] = useState(null);
+
+  const [phoneValue, setPhoneValue] = useState("");
+  const [phoneError, setPhoneError] = useState(false);
+
+  const clickHandler = () => {
+    if (!phoneValue) {
+      setPhoneError(true);
+    } else {
+      setPhoneError(false);
+    }
+  };
 
   const variants = [
     {
@@ -48,7 +60,7 @@ const StepFour = () => {
               <div className="indicator__unit indicator__unit-4"></div>
             </div>
           </div> */}
-          <ProgressBar />
+          <ProgressBar currentStep={4} />
           <div className="question">
             {/* <h2>4. Занимательный вопрос</h2> */}
             <Heading text="4. Занимательный вопрос" headingType="h2" />
@@ -83,9 +95,14 @@ const StepFour = () => {
                 />
               ))}
             </ul>
-            <button id="next-btn" disabled>
-              Далее
-            </button>
+            <LinkButton
+              id="next-btn"
+              buttonText="Далее"
+              onClick={clickHandler}
+              path="/thanks"
+              type="button"
+              isDisabled={!checkedAnswer}
+            />
           </div>
         </div>
       </div>
