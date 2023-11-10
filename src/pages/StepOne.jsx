@@ -4,17 +4,37 @@ import { Input } from "../components/Input";
 // import { Button } from "../components/Button";
 import { ProgressBar } from "../components/ProgressBar";
 import { LinkButton } from "../components/LinkButton";
+import { useNavigate } from "react-router-dom";
 
 const StepOne = () => {
+  const navigate = useNavigate();
+
   const [phoneValue, setPhoneValue] = useState("");
   const [phoneError, setPhoneError] = useState(false);
 
-  const clickHandler = () => {
-    if (!phoneValue) {
+  const goToNextPage = () => {
+    if (phoneError) {
+      navigate("/step-two");
+    }
+  };
+
+  const validatePhone = () => {
+    if (phoneValue) {
       setPhoneError(true);
     } else {
       setPhoneError(false);
     }
+  };
+
+  const handlePhoneInput = (value) => {
+    setPhoneValue(value);
+    validatePhone();
+  };
+
+  const clickHandler = () => {
+    validatePhone();
+
+    goToNextPage();
   };
 
   return (
@@ -42,7 +62,7 @@ const StepOne = () => {
               <Input
                 hasError={phoneError}
                 value={phoneValue}
-                onChange={setPhoneValue}
+                onChange={(value) => handlePhoneInput(value)}
                 isRequired
                 type="text"
                 id="answer"
